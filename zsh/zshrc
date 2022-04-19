@@ -8,4 +8,7 @@ plugins=(
   git
   zsh-autosuggestions
 )
+
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
 source $ZSH/oh-my-zsh.sh

@@ -3,7 +3,7 @@
 
 # Oh My ZSH
 export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="robbyrussell"
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Path
 export PATH="$HOME/.zsh/bin:$PATH"

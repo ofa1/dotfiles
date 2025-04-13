@@ -1,5 +1,30 @@
 #!/bin/zsh
 
+# if MacOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # Install Homebrew if not installed
+  if ! command -v brew &> /dev/null; then
+    echo "Homebrew not found. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+
+  # Install zsh if not installed
+  if ! command -v zsh &> /dev/null; then
+    echo "Zsh not found. Installing..."
+    brew install zsh
+  fi
+
+  # Install git if not installed
+  if ! command -v git &> /dev/null; then
+    echo "Git not found. Installing..."
+    brew install git
+  fi
+
+else
+  echo "This script is only for MacOS."
+  exit 1
+fi
+
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 

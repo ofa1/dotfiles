@@ -20,8 +20,12 @@ source $HOME/.zsh/config/aliases.zsh
 
 plugins=(
   git
+  fzf-tab
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-completions
+  zsh-autocomplete
+  fast-syntax-highlighting
 )
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)

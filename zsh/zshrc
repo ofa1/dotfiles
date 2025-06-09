@@ -5,12 +5,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Set ZSH variables before loading oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Disable gitstatus as it seems annoying
 # https://github.com/romkatv/powerlevel10k/issues/246
 POWERLEVEL9K_DISABLE_GITSTATUS=true
-
-
 
 # Configuration
 # --------------------------------------
@@ -22,10 +23,8 @@ plugins=(
   git
   fzf-tab
   zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-completions
-  zsh-autocomplete
   fast-syntax-highlighting
+  zsh-completions
 )
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -34,3 +33,11 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Graphite CLI completion
+if command -v gt &>/dev/null; then
+  eval "$(gt completion)"
+fi

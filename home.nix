@@ -52,6 +52,9 @@
         fi
       '')
       ''
+        # Shopify dev tooling
+        [[ -f /opt/dev/dev.sh ]] && source /opt/dev/dev.sh
+
         # Disable gitstatus (use nix-managed prompt)
         POWERLEVEL9K_DISABLE_GITSTATUS=true
 

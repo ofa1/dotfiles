@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   home.username = "omairahmed";
@@ -44,20 +44,21 @@
       [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
     '';
 
-    initExtraFirst = ''
-      # Enable Powerlevel10k instant prompt
-      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
-    '';
+    initContent = lib.mkMerge [
+      (lib.mkBefore ''
+        # Enable Powerlevel10k instant prompt
+        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+        fi
+      '')
+      ''
+        # Disable gitstatus (use nix-managed prompt)
+        POWERLEVEL9K_DISABLE_GITSTATUS=true
 
-    initExtra = ''
-      # Disable gitstatus (use nix-managed prompt)
-      POWERLEVEL9K_DISABLE_GITSTATUS=true
-
-      # Load p10k config
-      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-    '';
+        # Load p10k config
+        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+      ''
+    ];
 
     shellAliases = {
       # Add your aliases here

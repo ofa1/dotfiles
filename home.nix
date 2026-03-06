@@ -52,7 +52,8 @@
         fi
       '')
       ''
-        # Shopify dev tooling
+        # Shopify tec/dev tooling
+        [[ -x "$HOME/.local/state/tec/profiles/base/current/global/init" ]] && eval "$($HOME/.local/state/tec/profiles/base/current/global/init zsh)"
         [[ -f /opt/dev/dev.sh ]] && source /opt/dev/dev.sh
 
         # Disable gitstatus (use nix-managed prompt)

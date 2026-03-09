@@ -53,6 +53,7 @@
       '')
       ''
         # Shopify tec/dev tooling
+        [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
         [[ -x "$HOME/.local/state/tec/profiles/base/current/global/init" ]] && eval "$($HOME/.local/state/tec/profiles/base/current/global/init zsh)"
         [[ -f /opt/dev/dev.sh ]] && source /opt/dev/dev.sh
 

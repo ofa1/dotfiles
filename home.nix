@@ -64,10 +64,13 @@
       ''
     ];
 
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" ];
+    };
+
     shellAliases = {
-      # Add your aliases here
-      # ll = "eza -la";
-      # gs = "git status";
+      # Add your own aliases here
     };
 
     sessionVariables = {

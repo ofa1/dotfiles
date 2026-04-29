@@ -9,12 +9,42 @@
 
   # ── Packages ──────────────────────────────────────────────
   home.packages = with pkgs; [
-    fzf
     ripgrep
     fd
     jq
     eza
   ];
+
+  # ── FZF ───────────────────────────────────────────────────
+  programs.fzf = {
+    enable = true;           # installs fzf + wires up shell integration
+    enableZshIntegration = true;
+    defaultCommand = "fd --type f --hidden --follow --exclude .git";
+    defaultOptions = [
+      "--height=40%"
+      "--layout=reverse"
+      "--border=rounded"
+      "--info=inline"
+      "--bind=tab:accept"
+    ];
+    # Ctrl+R — fuzzy search command history
+    historyWidgetOptions = [
+      "--sort"
+      "--exact"
+      "--preview='echo {}'"
+      "--preview-window=down:3:wrap"
+    ];
+    # Ctrl+T — fuzzy search files
+    fileWidgetCommand = "fd --type f --hidden --follow --exclude .git";
+    fileWidgetOptions = [
+      "--preview='head -80 {}'"
+    ];
+    # Alt+C — fuzzy cd into directories
+    changeDirWidgetCommand = "fd --type d --hidden --follow --exclude .git";
+    changeDirWidgetOptions = [
+      "--preview='ls -la {}'"
+    ];
+  };
 
   # ── Zsh ───────────────────────────────────────────────────
   programs.zsh = {
@@ -76,6 +106,7 @@
 
     sessionVariables = {
       EDITOR = "vim";
+      PNPM_HOME = "$HOME/Library/pnpm";
     };
   };
 
@@ -84,6 +115,7 @@
 
   # ── PATH additions ───────────────────────────────────────
   home.sessionPath = [
+    "$HOME/Library/pnpm"
     "$HOME/.local/bin"
     "/usr/local/sbin"
     "/usr/local/bin"

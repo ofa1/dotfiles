@@ -92,6 +92,9 @@
 
         # Load p10k config
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+        # Local untracked secrets (FELLOW_API_KEY, etc.) — never commit
+        [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
       ''
     ];
 
